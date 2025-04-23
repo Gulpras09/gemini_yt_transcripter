@@ -69,12 +69,15 @@ if youtube_link:
     transcript_text, video_id = extract_transcript_details(youtube_link)
 
     if transcript_text:
-        # st.image(f"https://img.youtube.com/vi/{video_id}/0.jpg", use_column_width=True)
+        st.image(
+            f"https://img.youtube.com/vi/{video_id}/0.jpg", use_container_width=True)
         st.write("✅ Transcript fetched successfully.")
 
         if st.button("🧠 Generate Summary"):
             with st.spinner("Generating summary using Gemini..."):
                 summary = generate_gemini_summary(transcript_text, prompt)
+                # st.markdown("### ✍️ Youtube Transcript:")
+                # st.write(transcript_text)
                 st.markdown("### ✍️ Summary:")
                 st.write(summary)
                 st.markdown(
