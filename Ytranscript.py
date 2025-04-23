@@ -30,8 +30,9 @@ except Exception as e:
 prompt = [""" 
 You are a YouTube transcript summarizer.
 
-Your task is to summarize the transcript of a YouTube video and
-provide it in clean, concise bullet points in less than 500 words.
+Test: “Check if the timestamps correspond accurately to the video sections.
+
+Purpose: Ensure the timestamps are correct and reflect the exact timing in the video. This will ensure the structure of the transcript follows the video flow.
 
 At the end, show the total number of words in the original transcript.  
  """]
