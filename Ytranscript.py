@@ -7,13 +7,24 @@ from dotenv import load_dotenv
 # ✅ Load environment variables
 load_dotenv()
 
-# ✅ Safety check for API key
-if "GOOGLE_API_KEY" not in os.environ:
-    st.error("❌ Missing Google API Key in .env file")
-    st.stop()
+# ===== API Key Handling =====
+api_key = os.getenv("GOOGLE_API_KEY")
+if not api_key:
+    api_key = st.text_input(
+        "Enter your Google Generative AI API Key:", type="password")
+    if not api_key:
+        st.info("Please enter your API key to continue.", icon="🗝️")
+        st.stop()
+    else:
+        st.success("API key received. Verifying...")
 
-# ✅ Configure Gemini
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+try:
+    genai.configure(api_key=api_key)
+    test_model = genai.GenerativeModel("gemini-1.5-flash-001")
+    _ = test_model.generate_content("Hello!").text
+except Exception as e:
+    st.error("Invalid or unauthorized API key. Please double-check and try again.")
+    st.stop()
 
 # ✅ Define prompt for Gemini
 prompt = [""" 
