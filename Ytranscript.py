@@ -85,8 +85,8 @@ if youtube_link:
             with st.spinner("Generating summary using Gemini..."):
                 summary = generate_gemini_summary(transcript_text, prompt)
                 st.markdown("### ✍️ Youtube Transcript:")
-                st.write(transcript_text)
+                st.write(summary)
                 st.markdown(
-                    f"**Transcript length:** `{len(transcript_text.split())}` words")
+                    f"**Transcript length:** `{len(summary.split())}` words")
     else:
         st.error("❌ No transcript available for this video.")
