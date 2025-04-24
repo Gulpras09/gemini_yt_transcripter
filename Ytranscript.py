@@ -73,13 +73,19 @@ if youtube_link:
             f"https://img.youtube.com/vi/{video_id}/0.jpg", use_container_width=True)
         st.write("✅ Transcript fetched successfully.")
 
-        if st.button("🧠 Generate Summary"):
+        if st.button("🧠 Generate Transcript"):
+            with st.spinner("Generating transcript using Gemini..."):
+                # transcript = generate_gemini_summary(transcript_text, prompt)
+                st.markdown("### ✍️ Youtube Transcript:")
+                st.write(transcript_text)
+                st.markdown(
+                    f"**Transcript length:** `{len(transcript_text.split())}` words")
+
+        if st.button("🔍 Generate Summary "):
             with st.spinner("Generating summary using Gemini..."):
                 summary = generate_gemini_summary(transcript_text, prompt)
-                # st.markdown("### ✍️ Youtube Transcript:")
-                # st.write(transcript_text)
-                st.markdown("### ✍️ Summary:")
-                st.write(summary)
+                st.markdown("### ✍️ Youtube Transcript:")
+                st.write(transcript_text)
                 st.markdown(
                     f"**Transcript length:** `{len(transcript_text.split())}` words")
     else:
